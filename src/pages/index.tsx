@@ -32,6 +32,7 @@ export default function Home() {
   const [todasMensagens, setTodasMensagens] = useState<MensagensProps[]>([]);
 
   useEffect(()=>{
+    console.log(session?.user?.image)
     if(!session?.user?.email)return;
     async function loadMensagens(){
       const mensagensRef = collection(db, "mensagens")

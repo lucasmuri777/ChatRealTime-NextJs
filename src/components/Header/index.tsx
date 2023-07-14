@@ -2,7 +2,7 @@ import * as H from './styles'
 import {useSession, signIn, signOut} from 'next-auth/react'
 
 export default function Header(){
-    const {data: session} = useSession();
+    const {data: session, status} = useSession();
 
     return(
         <H.Header>
@@ -12,9 +12,14 @@ export default function Header(){
                         Chat Online
                     </H.Title>
                     <H.Infos>
-                        {session?(
+                        {status == 'loading' &&(
+                             <button onClick={()=> signOut()}>
+                                Loading...
+                            </button>
+                        )}
+                        {status == 'authenticated'?(
                             <button onClick={()=> signOut()}>
-                                Olá {session?.user?.name} <img src={session?.user?.image as string}/>
+                                Olá {session?.user?.name} <img src={session?.user?.image as string} alt={session?.user?.name as string}/>
                             </button>
                         ): (
                             <button onClick={()=> signIn('google')}>

@@ -27,9 +27,11 @@ export const Chat = styled.div`
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+
     gap: 10px;
     padding: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 `
 export const MensagemSingle = styled.div<MensagemSingleProps>`
     padding: 10px;
@@ -52,11 +54,13 @@ export const MensagemSingle = styled.div<MensagemSingleProps>`
         display: flex;
         justify-content: left;
         flex-direction: column;
-
+        padding-right: 10px;
+        max-width: calc(100% - 50px);
         p{
             font-size: 20px;
             line-height: 150%;
             white-space: pre-wrap;
+            max-width: 100%;
         }
         label{
             font-weight: bold;
